@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMenu Project</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        /* Centering intro-text */
+        .intro-text h1 {
+            text-align: center;
+        }
+
+        /* Adjusting the container class to display only 4 functions per line */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 5fr);
+            gap: 20px;
+            justify-items: center;
+            padding: 10px;
+        }
+
+        .function {
+            text-align: center;
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Vishal Singh<span>......</span></div>
+            <ul>
+                <li><a href="HomePage.html">Home</a></li>
+                <li><a href="Services.html">Services</a></li>
+                <li><a href="ManuProject.html">Tasks</a></li>
+                <li><a href="#">Resume</a></li>
+                <li><a href="aboutWEb.html">About</a></li>
+            </ul>
+            <a href="Contact.html" class="contact-btn">Contact Me</a>
+        </nav>
+    </header>
+
+    <!-- Intro Text at the top -->
+    <div class="intro-text">
+        <h1>.................................................................</h1>
+        <h1>Welcome to <span>MyMenu Project</span></h1>
+        <h1>.................................................................</h1>
+    </div>
+
+    <!-- Functionality Container below Intro Text -->
+    <div class="container">
+        <!-- WhatsApp Messaging -->
+        <div class="function">
+            <img src="static/image/whatsapp.png" alt="WhatsApp Icon" class="icon">
+            <a href="./whatsapp.html"><button onclick="window.location.href='/WhatsapppMsg'">GoTo W-MSG</button></a>
+        </div>
+        
+        <!-- Text Messaging -->
+        <div class="function">
+            <img src="static/image/TextMSG.jpeg" alt="Text Message Icon" class="icon">
+            <a href="./Text.html"><button onclick="window.location.href='/TextMsg'">GoTo Text-MSG</button></a>
+        </div>
+        
+        <!-- Phone Call -->
+        <div class="function">
+            <img src="static/image/PhoneCall.png" alt="Phone Call Icon" class="icon">
+            <a href="./Phonecall.html"><button onclick="window.location.href='/PhoneCall'">GoTo Phone-Call</button></a>
+        </div>
+        
+        <!-- Email -->
+        <div class="function">
+            <img src="static/image/Email.png" alt="Email Icon" class="icon">
+            <a href="./Email.html"><button onclick="window.location.href='/Email'">GoTo Email</button></a>
+        </div>
+        
+        <!-- Instagram Post -->
+        <div class="function">
+            <img src="static/image/insta.png" alt="Instagram Icon" class="icon">
+            <a href="./instapost.html"><button onclick="window.location.href='/InstaPost'">GoTo InstaPost</button></a>
+        </div>
+        
+        <!-- Search -->
+        <div class="function">
+            <img src="static/image/SearchHome.png" alt="Search Icon" class="icon">
+            <a href="./Search.html"><button onclick="window.location.href='/Search'">GoTo Search</button></a>
+        </div>
+        
+        <!-- Rainbow Text Converter -->
+        <div class="function">
+            <img src="static/image/Rainbow.png" alt="Rainbow Icon" class="icon">
+            <a href="./RainbowConvert.html"><button onclick="window.location.href='/RainbowConvert'">GoTo Rainbow-Text</button></a>
+        </div>
+        
+        <!-- Camera Access -->
+        <div class="function">
+            <img src="static/image/Camera.png" alt="Camera Icon" class="icon">
+            <a href="./Camera.html"><button onclick="window.location.href='/OpenCamera'">GoTo Camera</button></a>
+        </div>
+        
+        <!-- Filters -->
+        <div class="function">
+            <img src="static/image/FiltersIcon.jpg" alt="Filter Icon" class="icon">
+            <a href="./FilterImage.html"><button onclick="window.location.href='/FilterImage'">GoTo filters</button></a>
+        </div>
+        
+        <!-- Face Swap -->
+        <div class="function">
+            <img src="static/image/swapimage.png" alt="swapimage Icon" class="icon">
+            <a href="./SwepedImage.html"><button onclick="window.location.href='/SwepedImage'">GoTo SwepImage</button></a>
+        </div>
+        
+        <!-- Face Detection Crop -->
+        <div class="function">
+            <img src="static/image/FaceDetectionCrop.jpg" alt="FaceDetectionCrop Icon" class="icon">
+            <a href="./FaceDetected.html"><button onclick="window.location.href='/FaceDetectionCrop'">GoTo FaceDetectionCrop</button></a>
+        </div>
+        
+        <!-- Text to Speech -->
+        <div class="function">
+            <img src="static/image/TextToSpeech.png" alt="TextToSpeech Icon" class="icon">
+            <a href="./TextToSpeech.html"><button onclick="window.location.href='/TextToSpeech'">GoTo TextToSpeech</button></a>
+        </div>
+        
+        <!-- EC2 Launch -->
+        <div class="function">
+            <img src="static/image/AmazonEC2.jpg" alt="EC2 Icon" class="icon">
+            <a href="./EC2.html"><button onclick="window.location.href='/EC2'">GoTo LounchEC2</button></a>
+        </div>
+        
+        <!-- Docker Operations -->
+        <div class="function">
+            <img src="static/image/Docker.jpeg" alt="Docker Icon" class="icon">
+            <a href="./Docker.html"><button onclick="window.location.href='/Docker'">GoTo DockerOpertion</button></a>
+        </div>
+    </div>
+</body>
+</html>

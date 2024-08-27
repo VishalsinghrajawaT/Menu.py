@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMenu Project</title>
+    <style>
+        /* General Reset and Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #1e1e1e; /* Updated background color */
+            color: #e0e0e0; /* Light text color for contrast */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #333; /* Darker header background */
+            color: #e0e0e0; /* Light text color */
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            position: relative; /* Allow absolute positioning inside */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            margin-left: 20px; /* Space between logo and left edge */
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center; /* Center the nav links */
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #e0e0e0; /* Light link color */
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #a782f9; /* Highlight color on hover */
+        }
+
+        .contact-btn {
+            position: absolute;
+            right: 20px; /* Align to the right */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust for exact center alignment */
+            background-color: #a782f9; /* Button color */
+            color: #fff; /* Button text color */
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: #9c6fe0; /* Darker button color on hover */
+        }
+
+        /* Main Section */
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .intro {
+            background: #2a2a2a; /* Slightly lighter background for contrast */
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow for contrast */
+        }
+
+        .intro h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        .intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #b0b0b0; /* Slightly muted text color */
+        }
+
+        /* Features Section */
+        .features {
+            padding: 20px;
+        }
+
+        .features h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 features per row */
+            gap: 20px;
+            height: 500px;
+        }
+
+        .feature {
+            background: #2a2a2a; /* Slightly lighter background for contrast */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow for contrast */
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+        }
+
+        .feature:hover {
+            transform: translateY(-10px); /* Hover effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+        }
+
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        .feature p {
+            font-size: 16px;
+            color: #b0b0b0; /* Slightly muted text color */
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #2a2a2a; /* Slightly lighter background for contrast */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .contact h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        .contact p {
+            font-size: 18px;
+            color: #b0b0b0; /* Slightly muted text color */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333; /* Darker footer background */
+            color: #e0e0e0; /* Light text color */
+            padding: 15px 0;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Responsive Layout Adjustments */
+        @media (max-width: 1200px) {
+            .feature-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 features per row on medium screens */
+            }
+        }
+
+        @media (max-width: 900px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 features per row on small screens */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 features per row on extra small screens */
+            }
+        }
+
+        @media (max-width: 400px) {
+            .feature-grid {
+                grid-template-columns: 1fr; /* 1 feature per row on very small screens */
+            }
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo span {
+            color: #a782f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vishal Singh<span>......</span></div>
+        <nav>
+            <ul>
+                <li><a href="HomePage.html">Home</a></li>
+                <li><a href="Services.html">Services</a></li>
+                <li><a href="ManuProject.html">Tasks</a></li>
+                <li><a href="#">Resume</a></li>
+                <li><a href="aboutWEb.html">About</a></li>
+            </ul>
+        </nav>
+        <a href="Contact.html" class="contact-btn">Contact Me</a>
+    </header>
+    <main>
+        <section class="intro">
+            <h1>Welcome to MyMenu Project!</h1>
+            <p>Discover MyMenu Project, a dynamic platform designed to make your digital interactions seamless and exciting. Our collection of features offers everything you need to stay connected, creative, and efficient.</p>
+        </section>
+
+        <section class="features">
+            <h2>🌟 Key Features:</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>WhatsApp Messaging</h3>
+                    <p>Effortlessly connect with friends and family through WhatsApp. Our dedicated page simplifies the messaging experience.</p>
+                </div>
+                <div class="feature">
+                    <h3>Text Messaging</h3>
+                    <p>Enjoy a streamlined text messaging service. Send and receive texts with ease on our platform.</p>
+                </div>
+                <div class="feature">
+                    <h3>Phone Calls</h3>
+                    <p>Make phone calls directly from our site. Initiate calls without leaving the platform.</p>
+                </div>
+                <div class="feature">
+                    <h3>Email Services</h3>
+                    <p>Manage your email communications efficiently with our integrated email page.</p>
+                </div>
+                <div class="feature">
+                    <h3>Instagram Posts</h3>
+                    <p>Share and engage with Instagram posts directly from our platform.</p>
+                </div>
+                <div class="feature">
+                    <h3>Search Tools</h3>
+                    <p>Find information quickly with our powerful search functionality.</p>
+                </div>
+                <div class="feature">
+                    <h3>Rainbow Text Converter</h3>
+                    <p>Transform your text into vibrant, eye-catching designs with our Rainbow Text Converter.</p>
+                </div>
+                <div class="feature">
+                    <h3>Firefox Browser Access</h3>
+                    <p>Open and browse the web with Firefox directly from our platform.</p>
+                </div>
+                <div class="feature">
+                    <h3>Camera Access</h3>
+                    <p>Capture and manage photos using our integrated camera tool.</p>
+                </div>
+                <div class="feature">
+                    <h3>Image Filters</h3>
+                    <p>Apply various filters to enhance your images and experiment with different styles.</p>
+                </div>
+                <div class="feature">
+                    <h3>Face Swapping</h3>
+                    <p>Get creative with face-swapping features for fun and unique results.</p>
+                </div>
+                <div class="feature">
+                    <h3>Face Detection and Cropping</h3>
+                    <p>Perfect your photos with precise face detection and cropping tools.</p>
+                </div>
+                <div class="feature">
+                    <h3>Text to Speech</h3>
+                    <p>Convert written text into spoken words with our Text to Speech tool.</p>
+                </div>
+                <div class="feature">
+                    <h3>Amazon EC2</h3>
+                    <p>Explore and manage your Amazon EC2 instances with our dedicated page.</p>
+                </div>
+                <div class="feature">
+                    <h3>Docker Operations</h3>
+                    <p>Explore Docker operations and container management through our platform.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>📞 Get in Touch!</h2>
+            <p>For more details or inquiries, connect with us through our contact options. Follow us on social media to stay updated with the latest features and exciting news!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MyMenu Project. All rights reserved.</p>
+    </footer>
+</body>
+</html>

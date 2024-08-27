@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Phone Call</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            background: url('static/image/callbackground.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            margin: 200px;
+        }
+
+        .intro-text h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .intro-text h1 span {
+            color: #007bff;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #response-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #000204;
+        }
+    </style>
+</head>
+<body>
+    <!-- ----------------------------------phone call-------------------------------------- -->
+    <div class="intro-text">
+        <h1>Make <span>a Phone Call</span></h1>
+    </div>
+
+    <form id="phoneCallForm">
+        <label for="phone">Enter your phone number:</label>
+        <input type="text" id="phone" name="phone" placeholder="+91 0123456789" required>
+
+        <button type="submit">Call</button>
+    </form>
+
+    <div id="response-message"></div>
+
+    <script>
+        document.getElementById('phoneCallForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var form = this;
+            var button = form.querySelector('button');
+            button.disabled = true; // Disable the button to prevent multiple submissions
+
+            var formData = new FormData(form);
+
+            fetch('http://localhost:5000/Phonecall', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('response-message').innerText = 'Call successfully initiated!';
+                } else {
+                    document.getElementById('response-message').innerText = 'Failed to initiate call: ' + data.message;
+                }
+            })
+            .catch(error => {
+                document.getElementById('response-message').innerText = 'An error occurred: ' + error;
+            })
+            .finally(() => {
+                button.disabled = false; // Re-enable the button
+            });
+        });
+    </script>
+</body>
+</html>
