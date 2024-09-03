@@ -60,6 +60,7 @@ nav ul li a:hover {
     font-weight: 600;
 }
 
+
 .contact-btn:hover {
     background-color: #906ae2;
 }
@@ -412,7 +413,12 @@ footer  img:hover {
 
 h1 {
     font-size: 2rem;
-    color: #1e1e1e;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.card-front h1{
+    font-size: 2rem;
+    color: #110101;
     margin-bottom: 10px;
 }
 
