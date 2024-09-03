@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter Application</title>
+    <style>
+        /* General Reset and Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* General Body Styling */
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Section */
+        main {
+            max-width: 800px;
+            margin: auto;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #a782f9;
+        }
+
+        /* Form Styling */
+        form {
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Image Box Styling */
+        .image-box {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #34495e;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .image-box .download-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .image-box .download-button:hover {
+            background-color: #218838;
+        }
+
+        .image-box .image-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Filter Application</h1>
+    </header>
+
+    <main>
+        <form id="upload-form" action="/uploadfilter" method="post" enctype="multipart/form-data">
+            <input type="file" id="upload-photo" name="file" accept="image/*" required>
+            <button type="submit">Apply Filters</button>
+        </form>
+
+        <div id="filtered-images">
+            <!-- Filtered images will be displayed here -->
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this);
+
+            fetch('/uploadfilter', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('filtered-images');
+                container.innerHTML = ''; // Clear previous images
+
+                data.images.forEach(image => {
+                    const box = document.createElement('div');
+                    box.className = 'image-box';
+
+                    const img = document.createElement('img');
+                    img.src = image.url;
+                    img.alt = 'Filtered Image';
+
+                    const label = document.createElement('div');
+                    label.className = 'image-label';
+                    label.textContent = image.label;
+
+                    const downloadButton = document.createElement('a');
+                    downloadButton.href = image.url;
+                    downloadButton.download = image.filename;
+                    downloadButton.className = 'download-button';
+                    downloadButton.textContent = 'Download';
+
+                    box.appendChild(label);
+                    box.appendChild(img);
+                    box.appendChild(downloadButton);
+
+                    container.appendChild(box);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

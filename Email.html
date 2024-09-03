@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('image/Email.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            background-color: rgba(6, 105, 244, 0.377);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 300px;
+        }
+        .intro-text h1 {
+            font-size: 64px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .intro-text h1 span {
+            color: #a782f9;
+        }
+        input[type="email"], textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4393b1;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3312d9;
+        }
+        #response-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-text">
+        <h1>Send<span> Email</span></h1>
+    </div>
+
+    <form id="emailForm">
+        <label for="email_id">Your Email ID:</label>
+        <input type="email" id="email_id" name="email_id" required>
+        
+        <label for="to">Recipient Email ID:</label>
+        <input type="email" id="to" name="Recipient_Email" required>
+        
+        <label for="content">Email Body:</label>
+        <textarea id="content" name="content" rows="4" required></textarea>
+        
+        <button type="submit">Send Email</button>
+    </form>
+
+    <div id="response-message"></div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var form = this;
+            var button = form.querySelector('button');
+            button.disabled = true; // Disable the button to prevent multiple submissions
+
+            var formData = new FormData(form);
+
+            fetch('http://localhost:5000/Email', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('response-message').innerText = 'Email sent successfully!';
+                } else {
+                    document.getElementById('response-message').innerText = 'Failed to send email: ' + data.message;
+                }
+            })
+            .catch(error => {
+                document.getElementById('response-message').innerText = 'An error occurred: ' + error;
+            })
+            .finally(() => {
+                button.disabled = false; // Re-enable the button
+            });
+        });
+    </script>
+</body>
+</html>

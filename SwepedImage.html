@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Swap Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1e1e1e;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .upload-row {
+            display: flex;
+            align-items: center;
+            gap: 500px;
+        }
+
+        .upload-box {
+            border: 2px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+            height: 200px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+        .intro-text h1 {
+            font-size: 64px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .intro-text h1 span {
+            color: #a782f9;
+        }
+        .upload-box img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+
+        .upload-box.swapped {
+            border-color: red;
+        }
+
+        .swap-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .swap-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="intro-text">
+                <h1>Text<span> to Speech</span></h1>
+            </div>
+        <div class="upload-row">
+            <div class="upload-box">
+                <input type="file" id="upload1" accept="image/*">
+                <img id="image1" src="" alt="Image 1 Preview">
+            </div>
+            <div class="upload-box">
+                <input type="file" id="upload2" accept="image/*">
+                <img id="image2" src="" alt="Image 2 Preview">
+            </div>
+        </div>
+        <button class="swap-button" id="swapButton">Swap</button>
+        <div class="upload-box swapped">
+            <img id="swappedImage" src="" alt="Swapped Image">
+        </div>
+    </div>
+    <script src="swap.js"></script>
+</body>
+</html>

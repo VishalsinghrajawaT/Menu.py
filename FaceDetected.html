@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between the elements */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+</style>
+<body>
+    <main class="intro">
+        <div class="intro-text">
+            <h1>Crop<span> and Detect the Face</span></h1>
+        </div>
+
+        <div class="container">
+            <!-- Upload Box (Top) -->
+            <div class="image-upload-container function" onclick="triggerFileInput()">
+                <input type="file" id="upload-photo" accept="image/*" onchange="previewImage()" style="display: none;">
+                <img id="image-preview" class="image-preview" />
+                <div id="upload-placeholder" class="placeholder">Click to upload an image</div>
+            </div>
+
+            <!-- Face Detection Button (Middle) -->
+            <button id="detect-button" onclick="detectFace()">Detect Face</button>
+
+            <!-- Detected Face Box (Bottom) -->
+            <div id="face-detected-box" class="image-upload-container function">
+                <img id="face-preview" class="image-preview" />
+                <div class="placeholder">Detected face will appear here</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Trigger file input when clicking on the upload box
+        function triggerFileInput() {
+            document.getElementById('upload-photo').click();
+        }
+
+        // Preview the uploaded image in the first box
+        function previewImage() {
+            const file = document.getElementById('upload-photo').files[0];
+            const preview = document.getElementById('image-preview');
+            const placeholder = document.getElementById('upload-placeholder');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+                    placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Simulate face detection and show the image in the second box
+        function detectFace() {
+            const imagePreview = document.getElementById('image-preview').src;
+            const facePreview = document.getElementById('face-preview');
+            const facePlaceholder = document.getElementById('face-detected-box').querySelector('.placeholder');
+
+            if (imagePreview) {
+                // Simulate face detection by using the same image for this example
+                facePreview.src = imagePreview;
+                facePreview.style.display = 'block';
+                facePlaceholder.style.display = 'none';
+            } else {
+                alert('Please upload an image first.');
+            }
+        }
+    </script>
+</body>
+</html>

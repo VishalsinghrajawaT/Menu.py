@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet " href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Stream</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <h1>Webcam Stream</h1>
+    <video id="video" width="635" height="477" autoplay ></video><br>
+    <button id="captureButton">Capture Photo</button>
+
+    <!-- Grid for 4 capture boxes -->
+    <div id="captureGrid">
+        <div class="captureBox" id="captureBox1">
+            <p class="placeholder">No photo captured yet.</p>
+            <img id="image1" style="display:none;" />
+            <a id="download1" style="display:none;"><button>Download Image</button></a>
+        </div>
+        <div class="captureBox" id="captureBox2">
+            <p class="placeholder">No photo captured yet.</p>
+            <img id="image2" style="display:none;" />
+            <a id="download2" style="display:none;"><button>Download Image</button></a>
+        </div>
+        <div class="captureBox" id="captureBox3">
+            <p class="placeholder">No photo captured yet.</p>
+            <img id="image3" style="display:none;" />
+            <a id="download3" style="display:none;"><button>Download Image</button></a>
+        </div>
+        <div class="captureBox" id="captureBox4">
+            <p class="placeholder">No photo captured yet.</p>
+            <img id="image4" style="display:none;" />
+            <a id="download4" style="display:none;"><button>Download Image</button></a>
+        </div>
+    </div>
+
+    <script src="static/js/CameraJa.js"></script>
+</body>
+</html>

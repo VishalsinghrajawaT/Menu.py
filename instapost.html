@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image with Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('static/image/upload-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .upload-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 10px;
+        }
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+        .caption-box, .details-box {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .image-preview {
+            display: none;
+            max-width: 100%;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+        .response-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="file" id="upload-photo" accept="image/*">
+        <button class="upload-button" id="upload-button">Upload Image</button>
+        <img id="image-preview" class="image-preview" alt="Selected Image">
+        
+        <textarea class="caption-box" id="caption" placeholder="Write a caption..."></textarea>
+
+        <input type="text" class="details-box" id="username" placeholder="Instagram Username">
+        <input type="password" class="details-box" id="password" placeholder="Instagram Password">
+        <input type="text" class="details-box" id="phone" placeholder="Phone Number">
+        
+        <button class="upload-button" id="post-button">Post</button>
+        <div id="response-message" class="response-message"></div>
+    </div>
+
+    <script>
+        const uploadPhoto = document.getElementById('upload-photo');
+        const imagePreview = document.getElementById('image-preview');
+        const uploadButton = document.getElementById('upload-button');
+        const caption = document.getElementById('caption');
+        const postButton = document.getElementById('post-button');
+        const responseMessage = document.getElementById('response-message');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const phone = document.getElementById('phone');
+
+        uploadButton.addEventListener('click', () => {
+            uploadPhoto.click();
+        });
+
+        uploadPhoto.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        postButton.addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('image', uploadPhoto.files[0]);
+            formData.append('caption', caption.value);
+            formData.append('username', username.value);
+            formData.append('password', password.value);
+            formData.append('phone', phone.value);
+
+            try {
+                const response = await fetch('http://localhost:5000/upload-to-instagram', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                if (result.status === 'success') {
+                    responseMessage.innerText = 'Image uploaded successfully!';
+                } else {
+                    responseMessage.innerText = `Failed to upload image: ${result.message}`;
+                }
+            } catch (error) {
+                responseMessage.innerText = `An error occurred: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
